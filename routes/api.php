@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 require 'Api/email.php' ;
 require 'Api/password.php' ;
+require 'Api/socialite.php' ;
 

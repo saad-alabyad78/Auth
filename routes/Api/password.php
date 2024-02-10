@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([
-    'middleware' => ['guest','signed'] ,
+    'middleware' => ['guest'] ,
 ],function () {
     Route::post('forgot-password' , [PasswordController::class , 'forgotPassword'])
         ->name('password.email');
