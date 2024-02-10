@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\GithubController;
+use App\Http\Controllers\Auth\ProviderController;
 
 Route::group(
     [
         'middleware' => ['guest'],
-        'prefix' => 'github',
-        'as' => 'github.',
+        'prefix' => 'provider',
+        'as' => 'provider.',
     ],
     function () {
-        Route::get('/sign-in', [GithubController::class, 'sign'])->name('sign');
-        Route::get('/sign-in/redirect', [GithubController::class, 'redirect'])->name('redirect');
+        Route::get('/{provider}/sign-in/redirect', [ProviderController::class, 'redirect'])->name('redirect');
+        Route::get('/{provider}/sign-in/callback', [ProviderController::class, 'callback'])->name('callback');
     }
 );
