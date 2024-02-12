@@ -13,10 +13,10 @@ trait myOtp
 {
     protected int $minutes = 60 ;
 
-    protected function fulfill(User $user){
+    protected function fulfill(User $user , string $message){
         $code = $this->generate(4) ;
         $this->set($user , $code );
-        $this->send($user , $code );
+        $this->send($user , $code , $message );
     }
     protected function verifyOtp(User $user , string $otp){
         if
@@ -39,8 +39,8 @@ trait myOtp
         $user->save();
     }
 
-    protected function send(User $user , int $otp){
-        Mail::to($user)->send(new OtpMail($otp)) ;
+    protected function send(User $user , int $otp , $message){
+        Mail::to($user)->send(new OtpMail($otp , $message)) ;
     }
 }
 

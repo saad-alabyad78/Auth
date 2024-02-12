@@ -15,7 +15,7 @@ class otpPasswordController extends Controller
 
     public function forgotPassword(ForgotPasswordRequest $request){
         $user = User::where('email' , $request->validated()['email'])->first();
-        $this->fulfill($user);
+        $this->fulfill($user , 'Enter the code to reset your password');
     }
 
     public function resetPassword(Request $request) {

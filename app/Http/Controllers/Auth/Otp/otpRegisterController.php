@@ -21,7 +21,7 @@ class otpRegisterController extends Controller
 
         $user = User::create($data);
 
-        $this->fulfill($user);
+        $this->fulfill($user , ' this is your verification code ');
 
         return response()->json($user, 201);
     }
