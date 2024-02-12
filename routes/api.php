@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require 'Api/log.php' ;
 require 'Api/email.php' ;
 require 'Api/password.php' ;
 require 'Api/socialite.php' ;
+require 'Api/otp.php' ;
+
 

@@ -22,7 +22,7 @@ class ForgotPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            $this->email => ['email' , 'required' , 'exists:users,email'],
+            'email' => ['email' , 'required' , 'exists:users,email'],
         ];
     }
 }

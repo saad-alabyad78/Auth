@@ -1,13 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LogController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::post('register' , [RegisterController::class , 'register']);
-
-Route::post('login' , [LogController::class, 'login']);
 
 Route::post('email/verify' , [RegisterController::class , 'notice'])
     ->middleware('auth:sanctum')
@@ -21,11 +18,7 @@ Route::post('email/verification-notification' , [RegisterController::class , 'se
     ->middleware(['auth:sanctum' , 'throttle:6,1'])
     ->name('verification.send');
 
-Route::group([
-    'middleware' => ['auth:sanctum' , 'verified'] ,
-],function(){
-    Route::post('logout' , [LogController::class , 'logout']) ;
-});
+
 
 
 
