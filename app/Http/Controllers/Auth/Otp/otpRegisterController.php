@@ -23,6 +23,7 @@ class otpRegisterController extends Controller
 
         $this->fulfill($user , ' this is your verification code ');
 
+        //TODO: dont return the otp code
         return response()->json($user, 201);
     }
 

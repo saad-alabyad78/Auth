@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 //reset password with otp
 
 
-Route::group(['prefix' => 'otp' , 'middleware'=> 'throttle:30,1'] , function(){
+Route::group(['prefix' => 'otp' , 'middleware'=> 'throttle:10,1'] , function(){
 
  Route::post('register' , [otpRegisterController::class , 'register']);
  Route::post('email/verify' , [otpRegisterController::class , 'verify']);
