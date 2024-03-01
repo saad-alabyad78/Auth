@@ -13,7 +13,7 @@ class ProviderController extends Controller
 {
     public function redirect(string $provider)
     {
-        //send the user's request to oauth1 github
+        //send the user's request to oauth1 github or google
         return Socialite::driver($provider)->stateless()->redirect();
     }
     public function callback(string $provider)
