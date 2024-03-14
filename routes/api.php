@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,5 +18,9 @@ require 'Api/email.php' ;
 require 'Api/password.php' ;
 require 'Api/socialite.php' ;
 require 'Api/otp.php' ;
+
+Route::post('test' , function(){
+    return config('sms.gateway.url') ;
+});
 
 

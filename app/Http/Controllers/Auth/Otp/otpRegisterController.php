@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth\Otp;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Traits\GmailOtp;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\User;
-use App\Traits\myOtp;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\VerifyEmailRequest;
 
 class otpRegisterController extends Controller
 {
-    use myOtp;
+    use GmailOtp;
 
     public function register(RegisterRequest $request)
     {
@@ -27,16 +28,13 @@ class otpRegisterController extends Controller
         return response()->json($user, 201);
     }
 
-    public function verify(Request $request)
+    public function verify(VerifyEmailRequest $request)
     {
-        $validated = $request->validate([
-            'otp_code' => 'required|string',
-            'email' => 'required|email|exists:users,email',
-        ]);
+        $validated = $request->validated();
 
         $user = User::where('email' , $validated['email'])->first() ;
 
-        $ok = $this->verifyOtp($user , $validated['otp_code']);
+        $ok = $this->verifyOtp($user , $validated['email_otp_code']);
 
         if(!$ok)
         {

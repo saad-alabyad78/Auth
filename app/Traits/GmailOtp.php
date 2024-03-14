@@ -2,14 +2,14 @@
 
 namespace App\Traits;
 
-use App\Mail\OtpMail;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Mail\OtpMail;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
-trait myOtp
+trait GmailOtp
 {
     protected int $minutes = 60 ;
 
@@ -20,7 +20,7 @@ trait myOtp
     }
     protected function verifyOtp(User $user , string $otp){
         if
-        (Hash::check($otp , $user->otp_code) and $user->otp_expired_date >= Carbon::now())
+        (Hash::check($otp , $user->email_otp_code) and $user->email_otp_expired_date >= Carbon::now())
         {
             $user->email_verified_at = Carbon::now() ;
             $user->save();
@@ -34,8 +34,8 @@ trait myOtp
     }
 
     protected function set(User $user , int $otp ){
-        $user->otp_code = Hash::make($otp);
-        $user->otp_expired_date = Carbon::now()->addMinutes($this->minutes);
+        $user->email_otp_code = Hash::make($otp);
+        $user->email_otp_expired_date = Carbon::now()->addMinutes($this->minutes);
         $user->save();
     }
 
