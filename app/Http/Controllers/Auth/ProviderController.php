@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Laravel\Socialite\Facades\Socialite;
 use Throwable;
+use App\Models\User;
+use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class ProviderController extends Controller
 {
@@ -35,7 +35,7 @@ class ProviderController extends Controller
             ]);
 
             return response()->json([
-                'access_token' => $user->createToken($provider . 'token')->plainTextToken ,
+                'access_token' => $user->createToken($provider . '_token')->plainTextToken ,
             ]);
         }catch(Throwable $e){
             return response()->json([

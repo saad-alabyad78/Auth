@@ -21,7 +21,7 @@ class otpPasswordController extends Controller
 
     public function resetPassword(ResetPasswordRequest $request) {
 
-        $validated = $request->validateed() ;
+        $validated = $request->validated() ;
 
         $user = User::where('email' , $validated['email'])->first();
 
