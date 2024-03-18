@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -20,7 +21,12 @@ require 'Api/socialite.php' ;
 require 'Api/otp.php' ;
 
 Route::post('test' , function(){
-    return config('sms.gateway.url') ;
+    return Carbon::now() ;
 });
+
+Route::get('test' , function(){
+    dd(Carbon::now()->format('Y-m-d H:i:s'));
+});
+
 
 

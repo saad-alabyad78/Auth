@@ -16,17 +16,18 @@ return new class extends Migration
             $table->string('name');
 
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->dateTime('email_verified_at')->nullable();
             $table->string('email_otp_code')->nullable();
-            $table->date('email_otp_expired_date')->nullable();
+            $table->dateTime('email_otp_expired_date')->nullable();
 
-            $table->string('phone_number')->unique()->nullable();  //TODO? should it be uniqe ????
-            $table->timestamp('phone_number_verified_at')->nullable();
+            $table->string('phone_number')->nullable() ;//TODO? should it be uniqe ????
+            $table->dateTime('phone_number_verified_at')->nullable();
             $table->string('phone_number_otp_code')->nullable();
-            $table->date('phone_number_otp_expired_date')->nullable();
+            $table->dateTime('phone_number_otp_expired_date')->nullable();
 
             $table->string('password');
             $table->string('password_otp_code')->nullable();
+            $table->dateTime('password_otp_expired_date')->nullable();
             
             $table->rememberToken();
             $table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth\Otp;
 use App\Models\User;
 use App\Traits\GmailOtp;
 use Illuminate\Http\Request;
+use App\Traits\ResetPasswordOtp;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\ResetPasswordRequest;
@@ -12,7 +13,7 @@ use App\Http\Requests\Auth\ForgotPasswordRequest;
 
 class otpPasswordController extends Controller
 {
-    use GmailOtp;
+    use ResetPasswordOtp;
 
     public function forgotPassword(ForgotPasswordRequest $request){
         $user = User::where('email' , $request->validated()['email'])->first();
