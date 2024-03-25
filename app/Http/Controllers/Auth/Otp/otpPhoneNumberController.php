@@ -17,14 +17,19 @@ class otpPhoneNumberController extends Controller
         $validated = $request->validated();
 
         //get the user
-        $user = User::where("email", $validated['email'])->first();
+        $user = User::where("email", $validated['email'])
+        ->with(('phone'))
+        ->first();
+
+        return $user;
 
         //store the phone number
-        $user->phone_number = $validated['phone_number'];
+        $user->phone->phone_number = $validated['phone_number'];
         $user->save();
+        //$user->phone->save ? 
 
         //send sms 
-        return $this->fulfill($user , "pleas use the code to verify you phone number ");
+        return $this->fulfill($user->phone , "pleas use the code to verify you phone number ");
 
         //TODO: dont return the otp code
         //return response()->json($user, 201);

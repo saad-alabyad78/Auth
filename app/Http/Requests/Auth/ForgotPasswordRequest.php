@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Rules\EmailIsVerifiedRule;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ForgotPasswordRequest extends FormRequest
@@ -22,7 +24,7 @@ class ForgotPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['email' , 'required' , 'exists:users,email'],
+            'email' => ['email' , 'required' , 'exists:users,email' , new EmailIsVerifiedRule],
         ];
     }
 }

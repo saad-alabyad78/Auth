@@ -16,8 +16,14 @@ class otpPasswordController extends Controller
     use ResetPasswordOtp;
 
     public function forgotPassword(ForgotPasswordRequest $request){
+
         $user = User::where('email' , $request->validated()['email'])->first();
+        
         $this->fulfill($user , 'Enter the code to reset your password');
+
+        return response()->json([
+            'message' => 'otp password reset code has been sent to '. $request->validated()['email']
+        ]);
     }
 
     public function resetPassword(ResetPasswordRequest $request) {
@@ -28,6 +34,7 @@ class otpPasswordController extends Controller
 
         $ok = $this->verifyOtp($user , $validated['password_otp_code']);
 
+        
         if(!$ok)
         {
             return response()->json([

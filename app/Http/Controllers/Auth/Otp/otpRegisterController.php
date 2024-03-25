@@ -16,16 +16,14 @@ class otpRegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $data = $request->validated();
-
         //password hashed in the model
-
-        $user = User::create($data);
+        $user = User::create($request->validated());
 
         $this->fulfill($user , ' this is your verification code ');
 
-        //TODO: dont return the otp code
-        return response()->json($user, 201);
+        return response()->json([
+            'message' => 'otp verification code has been sent to ' . $user->email
+            ] , 201);
     }
 
     public function verify(VerifyEmailRequest $request)

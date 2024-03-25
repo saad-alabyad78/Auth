@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Rules\EmailIsVerifiedRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ResetPasswordRequest extends FormRequest
@@ -22,7 +23,7 @@ class ResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'email' => 'required|email|exists:users,email' ,
+                'email' => ['required' , 'email' , 'exists:users,email' , new EmailIsVerifiedRule] ,
                 'password' => 'required|confirmed' ,
                 'password_otp_code' => 'required|string' ,
         ];

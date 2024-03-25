@@ -29,8 +29,8 @@ trait ResetPasswordOtp
     }
 
     protected function set(User $user , int $otp ){
-        $user->email_otp_code = Hash::make($otp);
-        $user->email_otp_expired_date = Carbon::now()->addMinutes($this->minutes);
+        $user->password_otp_code = Hash::make($otp);
+        $user->password_otp_expired_date = Carbon::now()->addMinutes($this->minutes);
         $user->save();
     }
 
